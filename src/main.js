@@ -17,19 +17,17 @@ function recipesApp() {
             difficulty: []
         },
         
-        // Initialisation de l'application
         init() {
             this.loading = true;
             
             fetch('data.json')
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Impossible de charger le fichier data.json');
+                        throw new Error('Impossible de charger le data.json');
                     }
                     return response.json();
                 })
                 .then(data => {
-                    console.log("Données chargées avec succès:", data);
                     
                     const recipes = data.recipes || data;
                     
@@ -67,7 +65,7 @@ function recipesApp() {
                 .catch(error => {
                     console.error('Erreur lors du chargement des recettes:', error);
                     
-                    this.error = "Erreur lors du chargement des recettes. Veuillez vérifier le fichier data.json.";
+                    this.error = "Erreur lors du chargement des recettes";
                     
                     this.loading = false;
                 });
