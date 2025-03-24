@@ -1,0 +1,377 @@
+{
+    "recipes": [
+        {
+            "id": 1,
+            "title": "Purée de pommes de terre",
+            "imageUrl": "https://wordpress.potagercity.fr/wp-content/uploads/2019/01/RECETTE_puree_pommedeterre.jpg",
+            "difficulty": "difficile",
+            "preparationTime": 89,
+            "servings": 5,
+            "category": "accompagnement",
+            "ingredients": [
+              {
+                "name": "fromage",
+                "quantity": "352",
+                "unit": "kg"
+              },
+              {
+                "name": "riz",
+                "quantity": "209",
+                "unit": "pièces"
+              },
+              {
+                "name": "pommes de terre",
+                "quantity": "363",
+                "unit": "l"
+              },
+              {
+                "name": "pommes de terre",
+                "quantity": "212",
+                "unit": "c. à café"
+              },
+              {
+                "name": "riz",
+                "quantity": "127",
+                "unit": "c. à café"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer riz.",
+              "Étape 2: Préparer riz.",
+              "Étape 3: Préparer pommes de terre."
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Tiramisu",
+            "difficulty": "difficile",
+            "preparationTime": 57,
+            "servings": 7,
+            "category": "dessert",
+            "ingredients": [
+              {
+                "name": "farine",
+                "quantity": "387",
+                "unit": "pièces"
+              },
+              {
+                "name": "sucre",
+                "quantity": "123",
+                "unit": "g"
+              },
+              {
+                "name": "chocolat",
+                "quantity": "430",
+                "unit": "kg"
+              },
+              {
+                "name": "farine",
+                "quantity": "278",
+                "unit": "pièces"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer lait.",
+              "Étape 2: Préparer œufs.",
+              "Étape 3: Préparer sucre.",
+              "Étape 4: Préparer sucre."
+            ],
+            "imageUrl": "https://www.galbani.fr/wp-content/uploads/2017/07/Galbani_Veritable_Tiramisu_opt2.jpg"
+          },
+          {
+            "id": 3,
+            "title": "Smoothie fraise-banane",
+            "difficulty": "Moyen",
+            "preparationTime": 94,
+            "servings": 1,
+            "category": "boisson",
+            "ingredients": [
+              {
+                "name": "eau",
+                "quantity": "121",
+                "unit": "c. à café"
+              },
+              {
+                "name": "eau",
+                "quantity": "451",
+                "unit": "c. à soupe"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer citrons.",
+              "Étape 2: Préparer eau.",
+              "Étape 3: Préparer fraises."
+            ],
+            "imageUrl": "https://images.getrecipekit.com/20220512094829-smoothie-20fraise.png?aspect_ratio=4:3&quality=90&"
+          },
+          {
+            "id": 4,
+            "title": "Salade César",
+            "difficulty": "difficile",
+            "preparationTime": 116,
+            "servings": 8,
+            "category": "entrée",
+            "ingredients": [
+              {
+                "name": "tomates",
+                "quantity": "282",
+                "unit": "pièces"
+              },
+              {
+                "name": "ail",
+                "quantity": "154",
+                "unit": "pièces"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer ail.",
+              "Étape 2: Préparer pain."
+            ],
+            "imageUrl": "https://rians.com/wp-content/uploads/2024/04/1000038128.jpg"
+          },
+          {
+            "id": 5,
+            "title": "Clafoutis aux cerises",
+            "difficulty": "Moyen",
+            "preparationTime": 116,
+            "servings": 3,
+            "category": "dessert",
+            "ingredients": [
+              {
+                "name": "œufs",
+                "quantity": "329",
+                "unit": "kg"
+              },
+              {
+                "name": "lait",
+                "quantity": "343",
+                "unit": "kg"
+              },
+              {
+                "name": "lait",
+                "quantity": "29",
+                "unit": "kg"
+              },
+              {
+                "name": "lait",
+                "quantity": "302",
+                "unit": "pièces"
+              },
+              {
+                "name": "farine",
+                "quantity": "470",
+                "unit": "pièces"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer sucre.",
+              "Étape 2: Préparer chocolat."
+            ],
+            "imageUrl": "https://www.hervecuisine.com/wp-content/uploads/2020/05/recette-clafoutis-facile.jpg"
+          },
+          {
+            "id": 6,
+            "title": "Smoothie fraise-banane",
+            "difficulty": "difficile",
+            "preparationTime": 18,
+            "servings": 3,
+            "category": "boisson",
+            "ingredients": [
+              {
+                "name": "citrons",
+                "quantity": "156",
+                "unit": "g"
+              },
+              {
+                "name": "sucre",
+                "quantity": "339",
+                "unit": "pièces"
+              },
+              {
+                "name": "eau",
+                "quantity": "404",
+                "unit": "ml"
+              },
+              {
+                "name": "fraises",
+                "quantity": "424",
+                "unit": "ml"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer citrons.",
+              "Étape 2: Préparer menthe."
+            ],
+            "imageUrl": "https://images.getrecipekit.com/20220512094829-smoothie-20fraise.png?aspect_ratio=4:3&quality=90&"
+          },
+          {
+            "id": 7,
+            "title": "Poulet basquaise",
+            "difficulty": "Moyen",
+            "preparationTime": 109,
+            "servings": 2,
+            "category": "plat",
+            "ingredients": [
+              {
+                "name": "bœuf",
+                "quantity": "383",
+                "unit": "c. à café"
+              },
+              {
+                "name": "bœuf",
+                "quantity": "81",
+                "unit": "c. à café"
+              },
+              {
+                "name": "poulet",
+                "quantity": "212",
+                "unit": "c. à soupe"
+              },
+              {
+                "name": "pâtes",
+                "quantity": "354",
+                "unit": "pièces"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer bœuf.",
+              "Étape 2: Préparer carottes.",
+              "Étape 3: Préparer poulet."
+            ],
+            "imageUrl": "https://www.rustica.fr/images/poulet-basquaise.jpg"
+          },
+          {
+            "id": 8,
+            "title": "Crème brûlée",
+            "difficulty": "facile",
+            "preparationTime": 102,
+            "servings": 6,
+            "category": "dessert",
+            "ingredients": [
+              {
+                "name": "sucre",
+                "quantity": "102",
+                "unit": "kg"
+              },
+              {
+                "name": "chocolat",
+                "quantity": "71",
+                "unit": "ml"
+              },
+              {
+                "name": "lait",
+                "quantity": "359",
+                "unit": "ml"
+              },
+              {
+                "name": "chocolat",
+                "quantity": "260",
+                "unit": "g"
+              },
+              {
+                "name": "sucre",
+                "quantity": "186",
+                "unit": "kg"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer œufs.",
+              "Étape 2: Préparer sucre.",
+              "Étape 3: Préparer sucre."
+            ],
+            "imageUrl": "https://www.markal.fr/application/files/medias_markal/recettes/988-recette-creme-brulee.jpg"
+          },
+          {
+            "id": 9,
+            "title": "Riz pilaf",
+            "difficulty": "facile",
+            "preparationTime": 120,
+            "servings": 2,
+            "category": "accompagnement",
+            "ingredients": [
+              {
+                "name": "poivre",
+                "quantity": "307",
+                "unit": "c. à café"
+              },
+              {
+                "name": "fromage",
+                "quantity": "238",
+                "unit": "pièces"
+              },
+              {
+                "name": "riz",
+                "quantity": "5",
+                "unit": "c. à soupe"
+              },
+              {
+                "name": "fromage",
+                "quantity": "370",
+                "unit": "kg"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer pommes de terre.",
+              "Étape 2: Préparer beurre.",
+              "Étape 3: Préparer fromage.",
+              "Étape 4: Préparer riz."
+            ],
+            "imageUrl": "https://cache.marieclaire.fr/data/photo/w1000_ci/6g/recette-riz-pilaf-poulet.jpg"
+          },
+          {
+            "id": 10,
+            "title": "Tiramisu",
+            "difficulty": "Moyen",
+            "preparationTime": 67,
+            "servings": 3,
+            "category": "dessert",
+            "ingredients": [
+              {
+                "name": "œufs",
+                "quantity": "181",
+                "unit": "g"
+              },
+              {
+                "name": "chocolat",
+                "quantity": "58",
+                "unit": "g"
+              },
+              {
+                "name": "chocolat",
+                "quantity": "358",
+                "unit": "ml"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer sucre.",
+              "Étape 2: Préparer chocolat."
+            ],
+            "imageUrl": "https://www.galbani.fr/wp-content/uploads/2017/07/Galbani_Veritable_Tiramisu_opt2.jpg"
+          },
+          {
+            "id": 11,
+            "title": "Ratatouille",
+            "difficulty": "Moyen",
+            "preparationTime": 34,
+            "servings": 4,
+            "category": "plat",
+            "ingredients": [
+              {
+                "name": "bœuf",
+                "quantity": "257",
+                "unit": "g"
+              },
+              {
+                "name": "poulet",
+                "quantity": "251",
+                "unit": "c. à café"
+              }
+            ],
+            "instructions": [
+              "Étape 1: Préparer pâtes.",
+              "Étape 2: Préparer pâtes."
+            ],
+            "imageUrl": "https://recipeimages.migros.ch/crop/v-w-1200-h-630-a-center_center/a316a12e8302f9b6cc00957e855427d20b16698c/ratatouille-0-16-9.jpg"
+          }
+    ]
+}
