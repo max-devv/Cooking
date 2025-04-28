@@ -11,6 +11,7 @@ function recipesApp() {
         currentStep: 0,
         error: null,
         loadedImages: {},
+        imageObserver: null, // Intersection Observer pour le lazy loading
         filters: {
             search: '',
             category: '',
@@ -20,6 +21,9 @@ function recipesApp() {
         
         init() {
             this.loading = true;
+            
+            // Initialiser l'Intersection Observer pour le lazy loading
+            this.setupIntersectionObserver();
             
             fetch('data.json')
                 .then(response => {
@@ -68,6 +72,11 @@ function recipesApp() {
                     this.filterRecipes();
                     
                     this.loading = false;
+                    
+                    // Observer les images après le rendu
+                    this.$nextTick(() => {
+                        this.observeImages();
+                    });
                 })
                 .catch(error => {
                     console.error('Erreur lors du chargement des recettes:', error);
@@ -82,6 +91,41 @@ function recipesApp() {
                     this.mobileMenuOpen = false;
                 }
             });
+        },
+        
+        setupIntersectionObserver() {
+            // Options de l'Intersection Observer
+            const options = {
+                root: null, // Viewport comme élément de référence
+                rootMargin: '0px 0px 200px 0px', // Marge pour précharger avant qu'elles soient visibles
+                threshold: 0.1 // Déclenche quand 10% de l'élément est visible
+            };
+            
+            // Créer l'observateur si l'API est disponible
+            if ('IntersectionObserver' in window) {
+                this.imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const recipeId = entry.target.dataset.recipeId;
+                            if (recipeId && !this.loadedImages[recipeId]) {
+                                // Charger l'image
+                                this.loadImage(recipeId);
+                            }
+                            // Arrêter d'observer une fois chargée
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, options);
+            }
+        },
+        
+        observeImages() {
+            // Observer toutes les images qui doivent être chargées paresseusement
+            if (this.imageObserver) {
+                document.querySelectorAll('.lazy-image-container').forEach(container => {
+                    this.imageObserver.observe(container);
+                });
+            }
         },
         
         capitalizeDifficulty(difficulty) {
@@ -107,6 +151,11 @@ function recipesApp() {
                 if (this.filters.difficulty.length > 0 && !this.filters.difficulty.includes(recipe.difficulty)) return false;
                 
                 return true;
+            });
+            
+            // Observer les nouvelles images après le filtrage
+            this.$nextTick(() => {
+                this.observeImages();
             });
         },
         
@@ -134,21 +183,18 @@ function recipesApp() {
             }
         },
         
-        // openRecipeDetails(recipe) {
-        //     this.loadedImages[recipe.id] = false;
-        //     this.selectedRecipe = recipe;
-        //     this.currentStep = 0;
-        //     this.showRecipeDetails = true;
-            
-        //     setTimeout(() => {
-        //         this.loadedImages[recipe.id] = true;
-        //     }, 500); 
-        // },
+        openRecipeDetails(recipe) {
+            // Assurez-vous que l'image est chargée pour la vue détaillée
+            this.loadImage(recipe.id);
+            this.selectedRecipe = recipe;
+            this.currentStep = 0;
+            this.showRecipeDetails = true;
+        },
         
-        // closeRecipeDetails() {
-        //     this.showRecipeDetails = false;
-        //     this.selectedRecipe = null;
-        //     this.currentStep = 0;
-        // }
+        closeRecipeDetails() {
+            this.showRecipeDetails = false;
+            this.selectedRecipe = null;
+            this.currentStep = 0;
+        }
     }
 }
