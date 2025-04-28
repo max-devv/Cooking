@@ -11,7 +11,7 @@ function recipesApp() {
         currentStep: 0,
         error: null,
         loadedImages: {},
-        imageObserver: null, // Intersection Observer pour le lazy loading
+        imageObserver: null,
         filters: {
             search: '',
             category: '',
@@ -22,7 +22,6 @@ function recipesApp() {
         init() {
             this.loading = true;
             
-            // Initialiser l'Intersection Observer pour le lazy loading
             this.setupIntersectionObserver();
             
             fetch('data.json')
@@ -62,7 +61,6 @@ function recipesApp() {
                         };
                     });
                     
-                    // Initialiser l'objet des images chargées
                     this.recipes.forEach(recipe => {
                         this.loadedImages[recipe.id] = false;
                     });
@@ -73,7 +71,6 @@ function recipesApp() {
                     
                     this.loading = false;
                     
-                    // Observer les images après le rendu
                     this.$nextTick(() => {
                         this.observeImages();
                     });
@@ -94,24 +91,20 @@ function recipesApp() {
         },
         
         setupIntersectionObserver() {
-            // Options de l'Intersection Observer
             const options = {
-                root: null, // Viewport comme élément de référence
-                rootMargin: '0px 0px 200px 0px', // Marge pour précharger avant qu'elles soient visibles
-                threshold: 0.1 // Déclenche quand 10% de l'élément est visible
+                root: null, 
+                rootMargin: '0px 0px 200px 0px', 
+                threshold: 0.1 
             };
             
-            // Créer l'observateur si l'API est disponible
             if ('IntersectionObserver' in window) {
                 this.imageObserver = new IntersectionObserver((entries, observer) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             const recipeId = entry.target.dataset.recipeId;
                             if (recipeId && !this.loadedImages[recipeId]) {
-                                // Charger l'image
                                 this.loadImage(recipeId);
                             }
-                            // Arrêter d'observer une fois chargée
                             observer.unobserve(entry.target);
                         }
                     });
@@ -120,7 +113,7 @@ function recipesApp() {
         },
         
         observeImages() {
-            // Observer toutes les images qui doivent être chargées paresseusement
+
             if (this.imageObserver) {
                 document.querySelectorAll('.lazy-image-container').forEach(container => {
                     this.imageObserver.observe(container);
@@ -153,7 +146,6 @@ function recipesApp() {
                 return true;
             });
             
-            // Observer les nouvelles images après le filtrage
             this.$nextTick(() => {
                 this.observeImages();
             });
