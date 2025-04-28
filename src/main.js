@@ -184,7 +184,6 @@ function recipesApp() {
         },
         
         openRecipeDetails(recipe) {
-            // Assurez-vous que l'image est chargée pour la vue détaillée
             this.loadImage(recipe.id);
             this.selectedRecipe = recipe;
             this.currentStep = 0;
