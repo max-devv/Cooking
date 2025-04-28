@@ -280,58 +280,77 @@
                     </div>
 
                     <div 
-                        x-show="!loading && filteredRecipes.length > 0"
-                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                    >
-                        <template x-for="recipe in filteredRecipes" :key="recipe.id">
-                            <div 
-                                class="bg-white rounded-md border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200 cursor-pointer"
-                                @click="openRecipeDetails(recipe)"
-                            >
-                                <div class="relative overflow-hidden">
+                    x-show="!loading && filteredRecipes.length > 0"
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
+                    <template x-for="recipe in filteredRecipes" :key="recipe.id">
+                        <div 
+                            class="bg-white rounded-md border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200 cursor-pointer"
+                        >
+                            <div class="relative overflow-hidden">
+                                <!-- Image avec chargement à la demande -->
+                                <div class="w-full h-48 bg-gray-200 relative">
+                                    <!-- Image de faible résolution ou placeholder -->
                                     <img 
-                                        :src="recipe.imageUrl" 
+                                        :src="getImageUrl(recipe)" 
                                         :alt="recipe.name"
-                                        class="w-full h-48 object-cover transform hover:scale-105 transition-transform duration-300"
+                                        class="w-full h-full object-cover transition-opacity duration-300"
+                                        :class="{'opacity-70': !loadedImages[recipe.id]}"
                                     >
+                                    
+                                    <!-- Bouton de chargement qui apparaît si l'image n'est pas chargée -->
                                     <div 
-                                        class="absolute top-2 right-2 px-2 py-1 rounded-md text-xs font-medium shadow-sm"
-                                        :class="{
-                                            'bg-green-100 text-green-800': recipe.difficulty === 'Facile',
-                                            'bg-yellow-100 text-yellow-800': recipe.difficulty === 'Moyen',
-                                            'bg-red-100 text-red-800': recipe.difficulty === 'Difficile'
-                                        }"
-                                        x-text="recipe.difficulty"
-                                    ></div>
-                                </div>
-                                <div class="p-4">
-                                    <div class="text-xs text-gray-500 uppercase tracking-wider mb-1" x-text="recipe.category"></div>
-                                    <h2 class="text-lg font-medium text-gray-800 mb-2" x-text="recipe.name"></h2>
-                                    <div class="flex justify-between items-center text-sm text-gray-500 mb-3">
-                                        <span class="flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        x-show="!loadedImages[recipe.id]" 
+                                        @click.stop="loadImage(recipe.id)"
+                                        class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 transition-opacity duration-300 hover:bg-opacity-50"
+                                    >
+                                        <button class="bg-white bg-opacity-90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-md hover:bg-opacity-100">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                             </svg>
-                                            <span x-text="recipe.preparationTime + ' min'"></span>
-                                        </span>
-                                    </div>
-                                    <p class="text-gray-600 text-sm mb-4 h-10 overflow-hidden" x-text="recipe.description"></p>
-                                    <div class="flex justify-end">
-                                        <button 
-                                            class="text-sm text-red-600 hover:text-red-800 font-medium inline-flex items-center"
-                                        >
-                                            Voir la recette
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                            </svg>
+                                            Afficher l'image
                                         </button>
                                     </div>
                                 </div>
+                                
+                                <div 
+                                    class="absolute top-2 right-2 px-2 py-1 rounded-md text-xs font-medium shadow-sm"
+                                    :class="{
+                                        'bg-green-100 text-green-800': recipe.difficulty === 'Facile',
+                                        'bg-yellow-100 text-yellow-800': recipe.difficulty === 'Moyen',
+                                        'bg-red-100 text-red-800': recipe.difficulty === 'Difficile'
+                                    }"
+                                    x-text="recipe.difficulty"
+                                ></div>
                             </div>
-                        </template>
-                    </div>
-                </section>
-            </div>
+                            
+                            <div class="p-4">
+                                <div class="text-xs text-gray-500 uppercase tracking-wider mb-1" x-text="recipe.category"></div>
+                                <h2 class="text-lg font-medium text-gray-800 mb-2" x-text="recipe.name"></h2>
+                                <div class="flex justify-between items-center text-sm text-gray-500 mb-3">
+                                    <span class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span x-text="recipe.preparationTime + ' min'"></span>
+                                    </span>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-4 h-10 overflow-hidden" x-text="recipe.description"></p>
+                                <div class="flex justify-end">
+                                    <button 
+                                        @click="openRecipeDetails(recipe)"
+                                        class="text-sm text-red-600 hover:text-red-800 font-medium inline-flex items-center"
+                                    >
+                                        Voir la recette
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
         </main>
 
         <div 

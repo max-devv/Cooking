@@ -10,6 +10,7 @@ function recipesApp() {
         mobileMenuOpen: false,
         currentStep: 0,
         error: null,
+        loadedImages: {},
         filters: {
             search: '',
             category: '',
@@ -41,6 +42,7 @@ function recipesApp() {
                             id: recipe.id,
                             name: recipe.title || "Sans titre",
                             imageUrl: recipe.imageUrl || "/api/placeholder/400/300",
+                            thumbnailUrl: "/api/placeholder/100/100",
                             description: "Recette de " + (recipe.title || "Sans titre"),
                             category: recipe.category || "Non catégorisé",
                             preparationTime: recipe.preparationTime || 0,
@@ -54,6 +56,11 @@ function recipesApp() {
                             }),
                             instructions: recipe.instructions || [],
                         };
+                    });
+                    
+                    // Initialiser l'objet des images chargées
+                    this.recipes.forEach(recipe => {
+                        this.loadedImages[recipe.id] = false;
                     });
                     
                     this.categories = [...new Set(this.recipes.map(recipe => recipe.category))];
@@ -113,16 +120,35 @@ function recipesApp() {
             this.filterRecipes();
         },
         
-        openRecipeDetails(recipe) {
-            this.selectedRecipe = recipe;
-            this.currentStep = 0; 
-            this.showRecipeDetails = true;
+        loadImage(recipeId) {
+            if (!this.loadedImages[recipeId]) {
+                this.loadedImages[recipeId] = true;
+            }
         },
         
-        closeRecipeDetails() {
-            this.showRecipeDetails = false;
-            this.selectedRecipe = null;
-            this.currentStep = 0;
-        }
-    };
+        getImageUrl(recipe) {
+            if (this.loadedImages[recipe.id]) {
+                return recipe.imageUrl;
+            } else {
+                return recipe.thumbnailUrl;
+            }
+        },
+        
+        // openRecipeDetails(recipe) {
+        //     this.loadedImages[recipe.id] = false;
+        //     this.selectedRecipe = recipe;
+        //     this.currentStep = 0;
+        //     this.showRecipeDetails = true;
+            
+        //     setTimeout(() => {
+        //         this.loadedImages[recipe.id] = true;
+        //     }, 500); 
+        // },
+        
+        // closeRecipeDetails() {
+        //     this.showRecipeDetails = false;
+        //     this.selectedRecipe = null;
+        //     this.currentStep = 0;
+        // }
+    }
 }
